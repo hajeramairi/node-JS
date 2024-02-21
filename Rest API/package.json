@@ -1,0 +1,24 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "checkpoint rest api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hajeramairi/node-JS.git"
+  },
+  "author": "hajer amairi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hajeramairi/node-JS/issues"
+  },
+  "homepage": "https://github.com/hajeramairi/node-JS#readme",
+  "dependencies": {
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.3"
+  }
+}
