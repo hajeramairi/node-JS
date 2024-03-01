@@ -17,11 +17,11 @@ const CreateBooks = () => {
     const data = {
       title,
       author,
-      publishYear,
+      publishYear: publishYear ? Number(publishYear) : null, // Ensure publishYear is a number or null if empty
     };
     setLoading(true);
     axios
-      .post('https://back-ten-zeta.vercel.app', data)
+      .post('https://back-ten-zeta.vercel.app/books', data) // Ensure the URL is correct and includes the endpoint
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
@@ -29,9 +29,8 @@ const CreateBooks = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
-        enqueueSnackbar('Error', { variant: 'error' });
-        console.log(error);
+        enqueueSnackbar('Error creating book', { variant: 'error' });
+        console.error('Error creating book:', error);
       });
   };
 
@@ -42,33 +41,39 @@ const CreateBooks = () => {
       {loading ? <Spinner /> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Title</label>
+          <label htmlFor='title' className='text-xl mr-4 text-gray-500'>Title</label>
           <input
+            id='title'
             type='text'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
+            placeholder='Enter book title'
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Author</label>
+          <label htmlFor='author' className='text-xl mr-4 text-gray-500'>Author</label>
           <input
+            id='author'
             type='text'
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
+            placeholder='Enter author name'
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Publish Year</label>
+          <label htmlFor='publishYear' className='text-xl mr-4 text-gray-500'>Publish Year</label>
           <input
+            id='publishYear'
             type='number'
             value={publishYear}
             onChange={(e) => setPublishYear(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
+            placeholder='Enter publish year'
           />
         </div>
-        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
+        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook} disabled={loading}>
           Save
         </button>
       </div>
@@ -76,4 +81,4 @@ const CreateBooks = () => {
   );
 }
 
-export default CreateBooks
+export default CreateBooks;
