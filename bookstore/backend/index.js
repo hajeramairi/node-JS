@@ -9,9 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (request, response) => {
-    response.json("Welcome To Book APP");
-  });
+app.get("/", (req, res) => {
+    res.json("Welcome To Book APP");
+})
 
   app.use('/books', booksRoute);
 
