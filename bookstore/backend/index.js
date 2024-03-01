@@ -12,6 +12,7 @@ app.use(cors());
 app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send('Welcome To Book APP ');
+    response.json("Welcome To Book APP");
   });
 
   app.use('/books', booksRoute);
