@@ -7,8 +7,14 @@ import cors from 'cors';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-
+//app.use(cors());
+app.use(
+   cors({
+     origin: 'https://back-eta-five.vercel.app/',
+     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+     allowedHeaders: ['Content-Type'],
+   })
+ );
 app.get("/", (req, res) => {
     res.json("Welcome To Book APP");
 })
