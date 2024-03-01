@@ -20,7 +20,7 @@ const App = () => {
       publishYear: Number(publishYear), // Ensure publishYear is sent as a Number
     };
 
-    axios.post('https://back-seven-gilt.vercel.app/books', bookData)
+    axios.post('https://back-seven-gilt.vercel.app', bookData)
       .then(response => {
         console.log('Book Created:', response.data);
         // Optionally reset form fields or redirect the user
