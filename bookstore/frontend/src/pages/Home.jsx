@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('https://back-ten-zeta.vercel.app/books')
+      .get('https://back-ten-zeta.vercel.app')
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
