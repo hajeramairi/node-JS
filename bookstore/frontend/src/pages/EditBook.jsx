@@ -16,7 +16,7 @@ const EditBook = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://back-ten-zeta.vercel.app/books/${id}`)
+    axios.get(`https://back-ten-zeta.vercel.app/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear)
@@ -37,7 +37,7 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`https://back-ten-zeta.vercel.app/books/${id}`, data)
+      .put(`https://back-ten-zeta.vercel.app/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Edited successfully', { variant: 'success' });
