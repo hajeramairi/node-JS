@@ -7,36 +7,32 @@ import cors from 'cors';
 const app = express();
 
 app.use(express.json());
-//app.use(cors());
+
+// Configure CORS with specific origin and methods
 app.use(
-     cors({
-       origin: 'https://front-alpha-ruby.vercel.app/',
-       methods: ['GET', 'POST', 'PUT', 'DELETE'],
-       allowedHeaders: ['Content-Type'],
-     })
-   );
+  cors({
+    origin: 'https://front-alpha-ruby.vercel.app', // Removed trailing slash
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
 
-
+// Removed the duplicate root route
 app.get('/', (request, response) => {
-    console.log(request);
-    return response.status(234).send('Welcome To Book APP ');
-  });
+  console.log('Welcome request made to root');
+  return response.status(200).send('Welcome To Book APP');
+});
 
-app.get("/", (req, res) => {
-    res.json("Welcome To Book APP");
-})
-
-  app.use('/books', booksRoute);
+app.use('/books', booksRoute);
 
 mongoose
-  .connect(mongoDBURL)
+  .connect(mongoDBURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('App connected to database');
     app.listen(PORT, () => {
-      console.log(`App is listening to port: ${PORT}`);
+      console.log(`App is listening on port: ${PORT}`);
     });
   })
   .catch((error) => {
-    console.log(error);
+    console.error('Database connection error:', error);
   });
-  
