@@ -8,14 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-// Configure CORS with specific origin and methods
-app.use(
-  cors({
-    origin: 'https://front-alpha-ruby.vercel.app', // Removed trailing slash
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
+app.use(cors());
 
 // Removed the duplicate root route
 app.get('/', (request, response) => {
